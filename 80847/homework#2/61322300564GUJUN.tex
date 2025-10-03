@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[utopia]{mathdesign}
+\usepackage{lipsum}  
+\usepackage{lmodern}
+\usepackage{listings}
+
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Report \#2}
+\author{GU JUN}
+\date{November 1, 2024}
+ 
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+%    \fancyfoot[R]{\includegraphics[width=5cm]{}}
+    \fancyfoot[L]{\today}
+    \fancyhead[L]{Analytical Mechanics 80848\#1}
+    \fancyhead[R]{HIRAI SHINCHI}
+}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student & \theauthor\\
+    ID number & 6132230056 \\
+\end{tabular}
+
+\section*{Problem Statement}
+Assume that a system is described by four coordinates $q_1$ through $q_4$.
+Two constraints R1 and R2 are imposed on the system.
+Let $\bf{q} = \left[q_1, q_2, q_3, q_4\right]^{\top}$ 
+and $\bf{R} = \left[R_1, R_2\right]^{\top}$.
+Let $\bf{g}_1$ and $\bf{H}_1$ be gradient vector
+and Hessian matrix related to $R_1$ while $g_2$ and $H_2$ be gradient vector
+and Hessian matrix related to $R_2$. Let $J$ be Jacobian given by
+\begin{equation}
+  J=\left[\begin{array}{llll}
+  \partial R_1 / \partial q_1 & \partial R_1 / \partial q_2 & \partial R_1 / \partial q_3 & \partial R_1 / \partial q_4 \\
+  \partial R_2 / \partial q_1 & \partial R_2 / \partial q_2 & \partial R_2 / \partial q_3 & \partial R_2 / \partial q_4
+  \end{array}\right]
+\end{equation}
+Show the following equations:
+\begin{equation}
+  \begin{aligned}
+  \dot{\boldsymbol{R}} & =J \dot{\boldsymbol{q}} \\
+  \ddot{\boldsymbol{R}} & =J \ddot{\boldsymbol{q}}+\left[\begin{array}{c}
+  \dot{\boldsymbol{q}}^{\top} H_1 \dot{\boldsymbol{q}} \\
+  \dot{\boldsymbol{q}}^{\top} H_2 \dot{\boldsymbol{q}}
+  \end{array}\right]
+  \end{aligned}
+  \end{equation}
+
+% Solution
+\section*{Solution}
+\subsection*{1. $\dot{\bf{R}} = J \dot{q}$}
+\begin{equation}
+  \dot{R}=\frac{\partial R}{\partial q} \dot{q}=J \dot{q}
+\end{equation}
+Here, we have
+\begin{equation}
+  J = \frac{\partial R}{\partial q} 
+\end{equation}
+So, the equation $\dot{\bf{\bf{R}}} = J \dot{q}$ is proved.
+\subsection*{2. $\ddot{\bf{R}} = J \ddot{q} + \begin{bmatrix} \dot{q}^T H_1 \dot{q} \\ \dot{q}^T H_2 \dot{q} \end{bmatrix}$ }
+Differentiating the equation $\dot{\bf{R}} = J \dot{q}$ with respect to time, we have
+\begin{equation}
+\ddot{\bf{R}} = \frac{d}{dt}(J \dot{q}) = \frac{dJ}{dt} \dot{q} + J \ddot{q}
+\end{equation}
+The time derivative of $J$ can be expanded using the gradient and Hessian matrices:
+\begin{equation}
+\ddot{\bf{R}} = \frac{d}{dt}(J \dot{q}) = \frac{dJ}{dt} \dot{q} + J \ddot{q}
+\end{equation}
+Finally, we have
+\begin{equation}
+\ddot{\bf{R}} = J \ddot{q} + \begin{bmatrix} \dot{q}^T H_1 \dot{q} \\ \dot{q}^T H_2 \dot{q} \end{bmatrix}
+\end{equation}
+\end{document}

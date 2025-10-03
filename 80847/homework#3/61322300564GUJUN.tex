@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[utopia]{mathdesign}
+\usepackage{lipsum}  
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Report \#3}
+\author{GU JUN}
+\date{November 19, 2024}
+ 
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+%    \fancyfoot[R]{\includegraphics[width=5cm]{}}
+    \fancyfoot[L]{\today}
+    \fancyhead[L]{Analytical Mechanics 80848\#1}
+    \fancyhead[R]{HIRAI SHINCHI}
+}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student & \theauthor\\
+    ID number & 6132230056 \\
+\end{tabular}
+
+\section*{Problem Statement}
+Simulate the motion of a 2DOF open link mechanism under PID
+control. PID control is applied to active joints 1 and 2. Use
+appropriate values of geometrical and physical parameters of the
+manipulator.
+
+\begin{center}
+  \begin{tikzpicture}[scale=1.5, every node/.style={font=\small}]
+    % Ground
+    \draw[thick] (-1,0) -- (3,0);
+    
+    % Joint 1
+    \fill[black] (0,0) circle (2pt) node[below left] {joint 1};
+    
+    % Link 1
+    \draw[thick] (0,0) -- (2,1.5);
+    \draw[->,thick] (0: 0.5) arc[start angle=0, end angle=36, radius=0.5];
+    \node at (0.3, -0.15) {$\theta_1$};
+    \node[below] at (0.8, 0.3) {link 1};
+    
+    % Joint 2
+    \fill[black] (2,1.5) circle (2pt) node[below right] {joint 2};
+    
+    % Link 2
+    \draw[->, thick] (2,1.5) -- (2.3, 3);
+    \draw[->,thick] (2.3,1.8) arc[start angle=36, end angle=65, radius=0.5];
+    \node at (2.5,1.6) {$\theta_2$};
+    \node[below right] at (1.35,2.2) {link 2};
+    
+    % Center of mass markers
+    \fill[black] (1,0.75) circle (1.5pt) node[below right] {$l_{c1}$};
+    \fill[black] (2.15,2.25) circle (1.5pt) node[below right] {$l_{c2}$};
+    
+    % Link dimensions
+    \draw[<->,dashed] (0,0.1) -- (1,0.85) node[midway,left] {$l_1$};
+    \draw[<->,dashed] (2,1.5) -- (3,2.25) node[midway,right] {};
+    \draw[<->,dashed] (1.9,1.5) -- (2.2, 3.0) node[midway,left] {$l_2$};
+
+    % Axes
+    \draw[->,thick] (0,0) -- (0,2.5) node[above] {$y$};
+    \draw[->,thick] (0,0) -- (3.5,0) node[right] {$x$};
+    
+  \end{tikzpicture}
+  
+\end{center}
+
+\section*{PID Control}
+The control law for the PID controller is given by:
+
+\[
+\tau = -K_p \cdot \text{e} - K_d \cdot \omega - K_i \cdot \int \text{e} \, dt
+\]
+
+where:
+\begin{itemize}
+  \item \(\tau\) is the control input (torque) applied to the joints.
+  \item \(K_p\) is the proportional gain.
+  \item \(K_d\) is the derivative gain.
+  \item \(K_i\) is the integral gain.
+  \item \(\text{e}\) is the difference between the desired and actual position.
+  \item \(\omega\) is the angular velocity of the joint.
+  \item \(\text{integral}\) is the accumulated error over time.
+\end{itemize}
+The PID controller aims to minimize the error by adjusting the control input \(\tau\) based on the proportional, derivative, and integral terms. The proportional term \(K_p \cdot \text{e}\) corrects the error based on the current difference between the desired and actual position. The derivative term \(K_d \cdot \omega\) provides a damping effect by considering the rate of change of the error, thus reducing overshoot and oscillations. The integral term \(K_i \cdot \int \text{e} \, dt\) accounts for the accumulated error over time, ensuring that the steady-state error is minimized.
+
+\newpage
+
+\subsection*{Matlab Code}
+Based on the given example code and the PID control law, the following Matlab code was implemented to simulate the motion of the 2DOF open link mechanism under PID control.
+
+\begin{verbatim}
+  function dotq = open_mechanism_2DOF_PID_params (t, q, robot, thetad, Kp, Ki, Kd)
+  % equation of motion of 2DOF open mechanism under PID control
+    disp(num2str(t,"%8.6f"));
+    
+    theta = q(1:2);
+    omega = q(3:4);
+    integral = q(5:6);
+    
+    robot = robot.joint_angles(theta, omega);
+    [inertia_matrix, torque_vector] = robot.inertia_matrix_and_torque_vector;
+    
+    dottheta = omega;
+    error = theta - thetad;
+    tau = -Kp.*error - Kd.*omega - Ki.*integral;
+    dotomega = inertia_matrix \ (torque_vector + tau);
+    
+    dotq = [dottheta; dotomega; error];
+end
+
+\end{verbatim}
+
+To achieve PID control, I add the $K_i$ term as the new parameter and add \textbf{integral} to the state description \textbf{q}. The error is calculated as the difference between the desired and actual position. The control input \(\tau\) is then computed based on the PID control law. The derivative of the state vector \textbf{q} is returned as the output.
+
+\subsection*{PID Parameters}
+After some trial and error, the following PID parameters were chosen to achieve stable and accurate control of the 2DOF open link mechanism:
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    \(K_p^T\) & (2.5, 2.5) \\
+    \(K_i^T\) & (0.8, 0.8) \\
+    \(K_d^T\) & (0.5, 0.5) \\
+    \hline
+  \end{tabular}
+  \caption{PID Parameters}
+  \label{tab:pid-params}
+\end{table}
+\section*{Simulation Results}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{assets/open_mechanism_2DOF_PID_angles.png}
+  \includegraphics[width=0.4\textwidth]{assets/open_mechanism_2DOF_PID_draw.png}
+  \caption{2DOF Open Link Mechanism under PID Control, left side: joint angles, right side: mechanism drawing}
+  \label{fig:2dof-open-link-mechanism}
+\end{figure}
+
+As shown in Figure \ref{fig:2dof-open-link-mechanism}, the 2DOF open link mechanism under PID control exhibits stable and accurate motion than normal PD control. The joint angles converge to the desired values, and the mechanism follows the desired trajectory effectively. The chosen PID parameters provide a good balance between tracking performance and stability, resulting in smooth and precise control of the mechanism.
+A video demonstration of the 2DOF open link mechanism under PID control can be viewed at the following link:
+
+\url{https://mushroomspace.notion.site/video-for-report-3-1436031a26338051985ec594ad084aa9}
+
+\end{document}

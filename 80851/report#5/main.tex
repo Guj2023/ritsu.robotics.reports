@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage[utopia]{mathdesign}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+\usepackage{graphicx}
+\usepackage{titling}
+
+\title{Report for physical reservoir}
+\author{GU JUN}
+\date{Nov 19th, 2024}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{12.49998pt}
+\addtolength{\topmargin}{-0.49998pt}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{\thedate}
+    \fancyhead[L]{Soft Robotics Home Assignment \#3}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}  
+\usepackage{cmbright}
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student & \theauthor\\
+    Date & \thedate\\
+    Assignment & Soft Robotics Home Assignment \#5\\
+    Source & \url{https://doi.org/10.1038/s41563-023-01698-8}\\
+\end{tabular}\\
+\section*{Introduction}
+Cu$_2$OSeO$_3$ is a chiral magnet with rich magnetic phases like skyrmion, conical, and helical, due to the Dzyaloshinskii–Moriya interaction. It exhibits gigahertz spin dynamics that vary with magnetic field and temperature. Each phase has distinct properties:
+\begin{itemize}
+  \item Skyrmion phase: Strong memory capacity.
+  \item Helical phase: Low nonlinearity, suitable for signal transmission.
+\end{itemize}
+These dynamics map input signals into a high-dimensional space, with phase tunability allowing task-specific adaptability in physical reservoir computing.
+
+\section*{Setup (Input/Output)}
+\begin{itemize}
+  \item \textbf{Input:} Magnetic field values generated from field-cycling schemes tailored to specific tasks, such as chaotic Mackey–Glass signals for forecasting or sine waves for signal transformation.
+  \item \textbf{Processing:} The spin-wave spectra of Cu$_2$OSeO$_3$ are recorded and analyzed as the reservoir's output matrix.
+  \item \textbf{Output:} The computed results are obtained using ridge regression to transform the input signals or predict future behaviors.
+\end{itemize}
+
+\section*{Application Scenario}
+
+The material Cu$_2$OSeO$_3$ can be utilized in various neuromorphic computing tasks, such as:
+\begin{itemize}
+  \item Forecasting chaotic time series, like Mackey–Glass signals.
+  \item Performing signal transformations, for instance, converting sine waves to square waves.
+\end{itemize}
+Another potential application is in the field of digital graphics process, 
+where the material can be used as special filters to process images or videos.
+Especially, the material can be used to generate special effects in movies or games.
+It can also be used in the field of artificial intelligence to process data and make predictions.
+
+\section*{Advantages Over Software Solutions}
+
+\begin{itemize}
+  \item \textbf{Energy Efficiency:} Avoids the von Neumann bottleneck by integrating processing and memory within the physical system.
+  \item \textbf{Task Adaptability:} Utilizes phase-tunable magnetic modes (e.g., skyrmion, conical phases) for diverse tasks without the need for fabricating new systems.
+  \item \textbf{Performance:} Achieves high performance with reduced computational complexity, demonstrated by lower mean squared error (MSE) compared to software-only models.
+  \item \textbf{Scalability:} Demonstrates feasibility across different magnetic systems, including room-temperature materials like Co$_8.5$Zn$_8.5$Mn$_3$.
+\end{itemize}
+
+
+% \section*{Summary}
+% In summary, Cu$_2$OSeO$_3$ is a versatile chiral magnet with unique magnetic phases that make it highly suitable for physical reservoir computing. Its ability to host different magnetic modes, such as skyrmion and helical phases, allows for task-specific adaptability in neuromorphic computing applications. The material's gigahertz spin dynamics and phase tunability enable efficient processing of input signals, making it a promising candidate for tasks like chaotic time series forecasting and signal transformation. Compared to traditional software solutions, Cu$_2$OSeO$_3$ offers significant advantages in energy efficiency, task adaptability, performance, and scalability, demonstrating its potential for advanced computing applications.
+
+
+\end{document}

@@ -1,0 +1,54 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{#1}
+\csname url@rmstyle\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand\BIBentrySTDinterwordspacing{\spaceskip=0pt\relax}
+\providecommand\BIBentryALTinterwordstretchfactor{4}
+\providecommand\BIBentryALTinterwordspacing{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus \fontdimen4\font\relax}
+\providecommand\BIBforeignlanguage[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+
+\bibitem{bjelonic2019keep}
+M.~Bjelonic, C.~D. Bellicoso, Y.~de~Viragh, D.~Sako, F.~D. Tresoldi, F.~Jenelten, and M.~Hutter, ``Keep rollin’—whole-body motion control and planning for wheeled quadrupedal robots,'' \emph{IEEE Robotics and Automation Letters}, vol.~4, no.~2, pp. 2116--2123, 2019.
+
+\bibitem{klemm2019ascento}
+V.~Klemm, A.~Morra, C.~Salzmann, F.~Tschopp, K.~Bodie, L.~Gulich, N.~K{\"u}ng, D.~Mannhart, C.~Pfister, M.~Vierneisel, \emph{et~al.}, ``Ascento: A two-wheeled jumping robot,'' in \emph{2019 International Conference on Robotics and Automation (ICRA)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2019, pp. 7515--7521.
+
+\bibitem{li2023design}
+X.~Li, H.~Yu, H.~Feng, S.~Zhang, and Y.~Fu, ``Design and control for wlr-3p: a hydraulic wheel-legged robot. cyborg bionic syst 4: 25,'' 2023.
+
+\bibitem{kaelbling1996reinforcement}
+L.~P. Kaelbling, M.~L. Littman, and A.~W. Moore, ``Reinforcement learning: A survey,'' \emph{Journal of artificial intelligence research}, vol.~4, pp. 237--285, 1996.
+
+\bibitem{hoeller2024anymal}
+D.~Hoeller, N.~Rudin, D.~Sako, and M.~Hutter, ``Anymal parkour: Learning agile navigation for quadrupedal robots,'' \emph{Science Robotics}, vol.~9, no.~88, p. eadi7566, 2024.
+
+\bibitem{web:isaac-sim}
+\BIBentryALTinterwordspacing
+NVIDIA, ``Isaac-sim simulator.'' [Online]. Available: \url{https://developer.nvidia.com/isaac/sim}
+\BIBentrySTDinterwordspacing
+
+\bibitem{mittal2023orbit}
+M.~Mittal, C.~Yu, Q.~Yu, J.~Liu, N.~Rudin, D.~Hoeller, J.~L. Yuan, R.~Singh, Y.~Guo, H.~Mazhar, \emph{et~al.}, ``Orbit: A unified simulation framework for interactive robot learning environments,'' \emph{IEEE Robotics and Automation Letters}, vol.~8, no.~6, pp. 3740--3747, 2023.
+
+\bibitem{kumar2021workflow}
+A.~Kumar, A.~Singh, S.~Tian, C.~Finn, and S.~Levine, ``A workflow for offline model-free robotic reinforcement learning,'' \emph{arXiv preprint arXiv:2109.10813}, 2021.
+
+\bibitem{thompson2019reinforcement}
+C.~R. Thompson, R.~R. Talla, J.~Gummadi, and A.~Kamisetty, ``Reinforcement learning techniques for autonomous robotics,'' \emph{Asian Journal of Applied Science and Engineering}, vol.~8, no.~1, pp. 85--96, 2019.
+
+\bibitem{web:g1w_move}
+\BIBentryALTinterwordspacing
+JUN, ``the wheel-leg robot moves on the ground.'' [Online]. Available: \url{https://www.youtube.com/watch?v=evDuOyHe0U0}
+\BIBentrySTDinterwordspacing
+
+\end{thebibliography}

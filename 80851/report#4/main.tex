@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage[utopia]{mathdesign}
+\usepackage{tikz}
+\usepackage{amsmath}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=20mm,
+  top=20mm,
+}
+\usepackage{graphicx}
+\usepackage{titling}
+
+\title{Report for 3D/4D Printing of Soft Materials}
+\author{GU JUN}
+\date{Nov 14th, 2024}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{12.49998pt}
+\addtolength{\topmargin}{-0.49998pt}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+    \fancyfoot[R]{\thepage}
+    \fancyfoot[L]{\thedate}
+    \fancyhead[L]{Soft Robotics Home Assignment \#3}
+    \fancyhead[R]{\theauthor}
+}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+\usepackage{lipsum}  
+\usepackage{cmbright}
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student & \theauthor\\
+\end{tabular}
+% working principle, advantage, novelty, and what interests you.
+
+\section*{Q1 - Problem statement}
+Estimate the Young's modulus $E$ ($\mathrm{Pa}$) of a rubber band in the following situation. 
+$F$: force, $100 \, \mathrm{gf} \approx 1 \, \mathrm{N}$. $A$: area, $1 \, \mathrm{mm}^2 = 1 \times 10^{-6} \, \mathrm{m}^2$. ($1 \, \mathrm{Pa} = 1 \, \mathrm{N/m}^2$.) 
+Strain: $\epsilon = 3$.
+\subsection*{Solution}
+Young's modulus is defined as the ratio of stress to strain:
+\begin{equation}
+  E = \frac{\sigma}{\varepsilon}
+\end{equation}
+where $\sigma$ is the stress, $F$ is the force, and $A$ is the area. 
+The stress is defined as:
+\begin{equation}
+  \sigma = \frac{F}{A}
+\end{equation}
+With the given values, we can calculate the Young's modulus as follows:
+\begin{equation}
+  \begin{gathered}
+  \sigma = \frac{F}{A} = \frac{1 \, \mathrm{N}}{1 \times 10^{-6} \, \mathrm{m}^2} = 1 \times 10^6 \, \mathrm{Pa} \\
+  E = \frac{\sigma}{\varepsilon} = \frac{1 \times 10^6}{3} = 3.33 \times 10^5 \, \mathrm{Pa}
+  \end{gathered}
+\end{equation}
+So, the Young's modulus of the rubber band is $3.33 \times 10^5 \, \mathrm{Pa}$.
+
+\section*{Q2 - Problem statement}
+Estimate the chain density per unit volume $\nu$ in the rubber band of \textbf{Q1}, at $300 \, \mathrm{K}$,
+where the rubber band behaves as an ideal rubber. 
+Additionally, estimate the volume of a chain in the rubber band.
+
+\subsection*{Solution}
+The chain density per unit volume $\nu$ is defined as:
+\begin{equation}
+  \nu = \frac{E}{3 \times K_b \times T}
+\end{equation}
+where $E$ is the Young's modulus from \textbf{Q1}, $K_b$ is the Boltzmann constant $1.38 \times 10^{-23} \, \mathrm{J/K}$,
+and $T$ is the temperature $300 \, \mathrm{K}$.
+With the given values, we can calculate the chain density per unit volume as follows:
+\begin{equation}
+  \begin{gathered}
+  \nu = \frac{3.33 \times 10^5}{3 \times 1.38 \times 10^{-23} \times 300} \approx 2.68 \times 10^{25} \, \mathrm{m}^{-3}
+  \end{gathered}
+\end{equation}
+
+The volume of a chain in the rubber band is defined as:
+\begin{equation}
+  V = \frac{1}{\nu}
+\end{equation}
+
+So, the volume of a chain in the rubber band is:
+\begin{equation}
+  V = \frac{1}{2.68 \times 10^{25}} \approx 3.73 \times 10^{-26} \, \mathrm{m}^3
+\end{equation}
+
+\newpage
+
+\section*{Q3 - Problem statement}
+Estimate the molecular weight $M_w$ of the chain in the rubber band of \textbf{Q1},
+when the density of the rubber is $0.6 \, \mathrm{g/cm}^3$.
+\subsection*{Solution}
+
+The molecular weight $M_w$ of the chain is defined as:
+\begin{equation}
+  M_w = \frac{N_A \times \rho}{\nu}
+\end{equation}
+
+Where $N_A$ is the Avogadro constant $6.02 \times 10^{23} \, \mathrm{mol}^{-1}$,
+$\rho$ is the density of the rubber $0.6 \, \mathrm{g/cm}^3$, 
+and $\nu$ is the chain density per unit volume from \textbf{Q2}.
+With the given values, we can calculate the molecular weight of the chain as follows:
+\begin{equation}
+  \begin{gathered}
+  M_w = \frac{6.02 \times 10^{23} \times 0.6}{2.68 \times 10^{25}} \approx 1.35 \times 10^4 \, \mathrm{g/mol}
+  \end{gathered}
+\end{equation}
+
+\section*{Q4 - Problem statement}
+Estimate the polymerization degree $N$ of the rubber band of \textbf{Q1} made from isoprene, where the molecular
+weight of isoprene $C_5H_8 \approx 70 \, \mathrm{g/mol}$.
+\subsection*{Solution}
+The polymerization degree $N$ of the rubber band is defined as:
+\begin{equation}
+  N = \frac{M_w}{M}
+\end{equation}
+where $M_w$ is the molecular weight of the chain from \textbf{Q3}, and $M$ is the molecular weight of isoprene $70 \, \mathrm{g/mol}$.
+
+With the given values, we can calculate the polymerization degree of the rubber band as follows:
+\begin{equation}
+  \begin{gathered}
+  N = \frac{1.35 \times 10^4}{70} \approx 193
+  \end{gathered}
+\end{equation}
+
+\section*{Q5 - Problem statement}
+Estimate the radius of the chain \( R_{\text{Gauss}} \) in the rubber band of \textbf{Q1} swollen in toluene based on the ideal chain (Gauss chain) model, where the segment size \( a = 0.3 \, \text{nm} \).
+\subsection*{Solution}
+The radius of the chain \( R_{\text{Gauss}} \) in the rubber band is defined as:
+\begin{equation}
+  R_{\text{Gauss}} = a \times \sqrt{N}
+\end{equation}
+where \( a = 0.3 \, \text{nm} \) is the segment size, and \( N \) is the polymerization degree of the rubber band from \textbf{Q4}.
+With the given values, we can calculate the radius of the chain in the rubber band as follows:
+\begin{equation}
+  \begin{gathered}
+  R_{\text{Gauss}} = 0.3 \times \sqrt{193} \approx 4.146 \, \text{nm}
+  \end{gathered}
+\end{equation}
+\newpage
+
+\section*{Q6 - Problem statement}
+Estimate the Flory radius of the chain \( R_{\text{Flory}} \) in the rubber band of \textbf{Q1} swollen in toluene based on the real chain model, where the segment size \( a = 0.3 \, \text{nm} \).
+\subsection*{Solution}
+The radius of the chain \( R_{\text{Flory}} \) in the rubber band is defined as:
+\begin{equation}
+  R_{\text{Flory}} = a \times N^{3/5}
+\end{equation}
+
+where \( a = 0.3 \, \text{nm} \) is the segment size, and \( N \) is the polymerization degree of the rubber band from \textbf{Q4}.
+With the given values, we can calculate the radius of the chain in the rubber band as follows:
+\begin{equation}
+  \begin{gathered}
+  R_{\text{Flory}} = 0.3 \times 193^{3/5} \approx 7.01 \, \text{nm}
+  \end{gathered}
+\end{equation}
+
+\section*{Q7 - Problem statement}
+Finally, please write down your impressions of this class. It can be in Japanese. 
+\subsection*{Solution}
+This class was very interesting. I particularly appreciated the balance between theory and practice regarding 3D/4D printing of soft materials. The lectures were very comprehensive, and I was able to deepen my understanding through real-world applications. However, due to time constraints, I felt that I needed a bit more time to fully grasp all the concepts. I look forward to continuing my studies in this field. Thank you very much.
+
+\end{document}

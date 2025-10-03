@@ -1,0 +1,189 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[utopia]{mathdesign}
+\usepackage{lipsum}  
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+ \usepackage{graphicx}
+ \usepackage{titling}
+
+ \title{Report \#5}
+\author{GU JUN}
+ 
+ \usepackage{fancyhdr}
+\fancypagestyle{plain}{%  the preset of fancyhdr 
+    \fancyhf{} % clear all header and footer fields
+%    \fancyfoot[R]{\includegraphics[width=5cm]{}}
+    \fancyfoot[L]{\today}
+    \fancyhead[L]{Analytical Mechanics 80848\#5}
+    \fancyhead[R]{HIRAI SHINCHI}
+}
+\makeatletter
+\renewcommand{\maketitle}{%
+  \newpage
+  \null
+  \vskip 1em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE \@title \par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+\makeatother
+
+
+\begin{document}
+
+\maketitle
+
+\noindent\begin{tabular}{@{}ll}
+    Student & \theauthor\\
+    ID number & 6132230056 \\
+\end{tabular}
+
+\section{Show that $R(\boldsymbol{q})$ orthogonal.}
+To show that  $R(q)$, the rotation matrix derived from a quaternion $q$ , is orthogonal, we need to verify that:
+
+\begin{equation}
+  R(q)^\top R(q) = I
+\end{equation}
+
+where  $R(q)^\top$  is the transpose of  $R(q)$ , and  $I$  is the identity matrix.
+
+
+\begin{equation}
+  R(q) = \begin{bmatrix}
+    1 - 2(y^2 + z^2) & 2(xy - wz) & 2(xz + wy) \\
+    2(xy + wz) & 1 - 2(x^2 + z^2) & 2(yz - wx) \\
+    2(xz - wy) & 2(yz + wx) & 1 - 2(x^2 + y^2)
+    \end{bmatrix}    
+\end{equation}
+where  $w$, $x$, $y$, $z$  are the components of the quaternion.
+
+It's transpose is:
+\begin{equation}
+  R(q)^\top = \begin{bmatrix}
+    1 - 2(y^2 + z^2) & 2(xy + wz) & 2(xz - wy) \\
+    2(xy - wz) & 1 - 2(x^2 + z^2) & 2(yz + wx) \\
+    2(xz + wy) & 2(yz - wx) & 1 - 2(x^2 + y^2)
+    \end{bmatrix}
+\end{equation}
+
+Now, we multiply  $R(q)^\top$  by  $R(q)$ :
+\begin{equation}
+  R(q)^\top R(q) =
+    \begin{bmatrix}
+      1 & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{bmatrix}
+  \end{equation}
+The result of  $R(q)^\top R(q)$  is the identity matrix  $I$ :
+
+$R(q)^\top R(q) = I$.
+
+So the rotation matrix  $R(q)$  is orthogonal.
+\section{Show $\dot{A}\boldsymbol{q}=A\dot{\boldsymbol{q}}$, $\dot{B}\boldsymbol{q}=B\dot{\boldsymbol{q}}$, and $\dot{C}\boldsymbol{q}=C\dot{\boldsymbol{q}}$.}
+
+\begin{equation}
+A = \left[\begin{array}{cccc}
+  q_0 & q_1 & -q_2 & -q_3 \\
+  q_3 & q_2 & q_1 & q_0 \\
+  -q_2 & q_3 & -q_0 & q_1
+  \end{array}\right], \quad
+  B = \left[\begin{array}{cccc}
+    -q_3 & q_2 & q_1 & -q_0 \\
+    q_0 & -q_1 & q_2 & -q_3 \\
+    q_1 & q_0 & q_3 & q_2
+    \end{array}\right], \quad
+  C = \left[\begin{array}{cccc}
+    q_2 & q_3 & q_0 & q_1 \\
+    -q_1 & -q_0 & q_3 & q_2 \\
+    q_0 & -q_1 & -q_2 & q_3
+    \end{array}\right].
+\end{equation}
+
+Each element of  $A$  depends on  $q_0$, $q_1$, $q_2$, $q_3$ . Taking the derivative with respect to time:
+
+\begin{equation}
+  \dot{A} = \begin{bmatrix}
+    \dot{q}_0 & \dot{q}_1 & -\dot{q}_2 & -\dot{q}_3 \\
+    \dot{q}_3 & \dot{q}_2 & \dot{q}_1 & \dot{q}_0 \\
+    -\dot{q}_2 & \dot{q}_3 & -\dot{q}_0 & \dot{q}_1
+    \end{bmatrix}.
+\end{equation}
+
+When $\dot{A}$  is multiplied by  $\boldsymbol{q}$ :
+
+\begin{equation}
+  \dot{A}\boldsymbol{q} = 
+    \begin{bmatrix}
+    \dot{q}_0q_0 + \dot{q}_1q_1 - \dot{q}_2q_2 - \dot{q}_3q_3 \\
+    \dot{q}_3q_0 + \dot{q}_2q_1 + \dot{q}_1q_2 + \dot{q}_0q_3 \\
+    -\dot{q}_2q_0 + \dot{q}_3q_1 - \dot{q}_0q_2 + \dot{q}_1q_3
+    \end{bmatrix}    
+\end{equation}
+
+Similarly, consider  $A\dot{\boldsymbol{q}}$ , where:
+
+\begin{equation}
+  A\dot{\boldsymbol{q}} = \begin{bmatrix}
+    q_0 & q_1 & -q_2 & -q_3 \\
+    q_3 & q_2 & q_1 & q_0 \\
+    -q_2 & q_3 & -q_0 & q_1
+    \end{bmatrix}
+    \begin{bmatrix}
+    \dot{q}_0 \\
+    \dot{q}_1 \\
+    \dot{q}_2 \\
+    \dot{q}_3
+    \end{bmatrix}    
+\end{equation}
+
+Performing the multiplication:
+
+\begin{equation}
+  A\dot{\boldsymbol{q}} = \begin{bmatrix}
+    q_0\dot{q}_0 + q_1\dot{q}_1 - q_2\dot{q}_2 - q_3\dot{q}_3 \\
+    q_3\dot{q}_0 + q_2\dot{q}_1 + q_1\dot{q}_2 + q_0\dot{q}_3 \\
+    -q_2\dot{q}_0 + q_3\dot{q}_1 - q_0\dot{q}_2 + q_1\dot{q}_3
+    \end{bmatrix}    
+\end{equation}
+By inspecting the expressions for $\dot{A}\boldsymbol{q}$  and  $A\dot{\boldsymbol{q}}$ , we see that the two results are identical:
+
+\begin{equation}
+  \dot{A}\boldsymbol{q} = A\dot{\boldsymbol{q}}
+\end{equation}.
+Following the same approach, we can compute the derivatives of  $B$  and  $C$ , and we can proof:
+
+\begin{equation}
+  \dot{B}\boldsymbol{q} = B\dot{\boldsymbol{q}}, \quad \dot{C}\boldsymbol{q} = C\dot{\boldsymbol{q}}.
+
+\end{equation}
+
+
+\section{Show $\dot{A}\boldsymbol{q}=A\dot{\boldsymbol{q}}$, $\dot{B}\boldsymbol{q}=B\dot{\boldsymbol{q}}$, and $\dot{C}\boldsymbol{q}=C\dot{\boldsymbol{q}}$.}
+
+\section{Show $\dot{H}\dot{\boldsymbol{q}}=0$}
+
+\section{Show $H\dot{\boldsymbol{q}} = -\dot{H}\boldsymbol{q}$ and $\omega = -2\dot{H}\boldsymbol{q}$}
+
+\section{Show $H H^{\top}=I_{3 \times 3}$}
+
+\section{$H \dot{\boldsymbol{q}}=\dot{\boldsymbol{q}} \text { and } \dot{\boldsymbol{q}}=(1 / 2) H^{\top} \boldsymbol{\omega}$}
+
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,
+                calc, chains,
+                decorations.pathreplacing,
+                calligraphy,
+                positioning,
+                quotes,
+                shapes}
+
+\begin{document}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[knLinkStyle,node distance=1cm and 2cm]
+    \pic (J0) {frame} node [above right] {R};
+    \pic [rotate=90](J1) [above=of J0-out] {revolute pair spatial=90:0.75/0/0};
+    \pic  (J2) [right=of J1-center] {revolute pair spatial=-90:0.75/1/0};
+    \pic  (J3) [right=of J2-center] {linear piston = 0.5};
+    \pic (J4) [right=of J3-center] {revolute pair spatial=90:0.75/0/0};
+    \pic (GR) [rotate=180][below right=of J4-center] {gripper};
+    \draw [] (J0-out) -- ($(J0-out)!0.5!(J1-center)$) -| (J1-in);
+    \draw [] (J1-out) -| (J2-in);
+    \draw [] (J2-out) -| (J3-in);
+    \draw [] (J3-out) -| (J4-in);
+    \draw [] (J4-out) -| ($(J4-center)!0.3!(GR-in)$) -- (GR-in);
+    \end{tikzpicture}
+    \caption{Manipulator with 4 DOF, 3 revolute joints and 1 prismatic joint}
+    \label{fig:manipulator_4dofwithlabel}
+    \end{figure}
+  \end{document}
